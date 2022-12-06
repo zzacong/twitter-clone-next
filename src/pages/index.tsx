@@ -14,11 +14,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="mx-auto grid max-h-screen flex-1 grid-cols-12 overflow-hidden lg:max-w-6xl">
         <Sidebar />
-
         <Feed />
-
         <Widgets />
       </main>
     </>

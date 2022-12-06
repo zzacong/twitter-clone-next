@@ -13,13 +13,13 @@ import SidebarRow from './SidebarRow';
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col">
+    <aside className="col-span-3 flex flex-col items-center px-4 md:items-start">
       <Image
         src="/logo.svg"
         alt="Twitter logo"
         width={40}
         height={40}
-        className="h-10"
+        className="m-3"
       />
 
       <SidebarRow icon={HomeIcon} title="Home" />
