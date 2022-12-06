@@ -13,5 +13,14 @@ const config = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'avatars.dicebear.com',
+        pathname: '/api/**',
+      },
+    ],
+  },
 };
 export default config;
