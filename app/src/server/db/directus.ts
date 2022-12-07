@@ -7,15 +7,16 @@ declare global {
   var directus: Directus<MyCollections> | undefined;
 }
 
-type Tweet = {
+export type Tweet = {
   id: ID;
   text: string;
   username: string;
   profile_image: string;
   image_url: string;
+  block_tweet: boolean;
 };
 
-type Comment = {
+export type Comment = {
   id: ID;
   comment: string;
   username: string;
