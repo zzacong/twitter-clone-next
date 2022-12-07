@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@directus/sdk": "^10.3.0",
     "@heroicons/react": "^2.0.13",
     "@tanstack/react-query": "^4.16.0",
     "@trpc/client": "^10.0.0",

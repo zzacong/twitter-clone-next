@@ -21,6 +21,9 @@ export const serverSchema = z.object({
 
   // DISCORD_CLIENT_ID: z.string(),
   // DISCORD_CLIENT_SECRET: z.string(),
+
+  DIRECTUS_URL: z.string().url(),
+  DIRECTUS_STATIC_TOKEN: z.string(),
 });
 
 /**
