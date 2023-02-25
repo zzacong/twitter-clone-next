@@ -28,14 +28,7 @@ export default defineType({
       type: 'reference',
       to: {type: 'tweet'},
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'createdAt',
-      title: 'Created at',
-      type: 'datetime',
-      readOnly: true,
-      initialValue: new Date().toISOString(),
-    }),
+    })
   ],
   preview: {
     select: {

@@ -32,13 +32,6 @@ export default defineType({
       title: 'Tweet image',
       type: 'string',
     }),
-    defineField({
-      name: 'createdAt',
-      title: 'Created at',
-      type: 'datetime',
-      readOnly: true,
-      initialValue: new Date().toISOString(),
-    }),
   ],
 
   preview: {
