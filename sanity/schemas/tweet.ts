@@ -39,7 +39,6 @@ export default defineType({
     select: {
       title: 'text',
       username: 'username',
-      media: 'image',
     },
     prepare(selection) {
       const {username} = selection

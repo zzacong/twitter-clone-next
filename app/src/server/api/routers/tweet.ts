@@ -8,7 +8,7 @@ const query = `//groq
 
 export const tweetRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
-    const tweets = await ctx.sanity.fetch<Tweet[]>(query);
+    const tweets = await ctx.sanity.fetch<TweetT[]>(query);
     return tweets;
   }),
 });

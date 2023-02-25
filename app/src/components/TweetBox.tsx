@@ -13,7 +13,7 @@ export default function TweetBox() {
   const [input, setInput] = useState('');
 
   return (
-    <div className="flex gap-x-4">
+    <div className="flex gap-x-4 px-5 pb-5">
       <div className="flex-shrink-0">
         <Image
           src="https://avatars.dicebear.com/api/adventurer/jnadi13h.svg"

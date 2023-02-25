@@ -24,8 +24,11 @@ const config = {
   images: {
     remotePatterns: [
       {
-        hostname: 'avatars.dicebear.com',
-        pathname: '/api/**',
+        hostname: '*.dicebear.com',
+        pathname: '/5.x/**',
+      },
+      {
+        hostname: 'images.unsplash.com',
       },
     ],
   },

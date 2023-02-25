@@ -31,6 +31,7 @@ specifiers:
   react-twitter-embed: ^4.0.4
   superjson: 1.12.2
   tailwindcss: ^3.2.7
+  timeago-react: ^3.0.5
   typescript: ^4.9.5
   zod: ^3.20.6
 
@@ -49,6 +50,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-twitter-embed: 4.0.4_biqbaboplfbrettd7655fr4n2y
   superjson: 1.12.2
+  timeago-react: 3.0.5_react@18.2.0
   zod: 3.20.6
 
 devDependencies:
@@ -2798,6 +2800,19 @@ packages:
     dependencies:
       readable-stream: 2.3.8
       xtend: 4.0.2
+    dev: false
+
+  /timeago-react/3.0.5_react@18.2.0:
+    resolution: {integrity: sha512-1k/aDt+ADpcABCmg3BIBuZSa7aSxolmuYFkdcpL7mlNkFcDAK/KwuxLf68gowhM7Oq3vWTE7LPeq3kLkSt45Jg==}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      timeago.js: 4.0.2
+    dev: false
+
+  /timeago.js/4.0.2:
+    resolution: {integrity: sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==}
     dev: false
 
   /tiny-glob/0.2.9:

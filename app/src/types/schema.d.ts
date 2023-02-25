@@ -1,12 +1,12 @@
 declare global {
-  interface TweetBody {
+  interface TweetBodyT {
     text: string;
     username: string;
-    profileImg: string | undefined;
-    image: string | undefined;
+    profileImage?: string;
+    image?: string;
   }
 
-  interface Tweet extends TweetBody {
+  interface TweetT extends TweetBodyT {
     _createdAt: string;
     _id: string;
     _rev: string;
