@@ -15,6 +15,7 @@ export default defineType({
       title: 'Block Tweet',
       description: 'Admin control: Toggle if Tweet is deemed inaapropriate',
       type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'username',

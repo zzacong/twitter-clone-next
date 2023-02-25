@@ -22,6 +22,7 @@ const server = z.object({
   // DISCORD_CLIENT_SECRET: z.string(),
 
   SANITY_PROJECT_ID: z.string().min(1),
+  SANITY_DATASET: z.string().optional(),
   SANITY_TOKEN: z.string().min(1),
 });
 
@@ -44,6 +45,7 @@ const processEnv = {
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+  SANITY_DATASET: process.env.SANITY_DATASET,
   SANITY_TOKEN: process.env.SANITY_TOKEN,
 };
 

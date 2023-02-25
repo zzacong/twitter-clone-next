@@ -18,7 +18,7 @@ export default function Feed() {
 
       <div>
         {tweets?.map(tw => (
-          <Tweet key={tw.id} tweet={tw} />
+          <Tweet key={tw._id} tweet={tw} />
         ))}
       </div>
     </div>

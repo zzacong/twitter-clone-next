@@ -3,8 +3,8 @@ import { env } from '~/env.mjs';
 
 export const sanityClient = createClient({
   projectId: env.SANITY_PROJECT_ID,
-  dataset: 'production',
+  dataset: env.SANITY_DATASET || 'production',
   apiVersion: '2022-01-12',
-  useCdn: true,
+  useCdn: env.NODE_ENV === 'production',
   token: env.SANITY_TOKEN,
 });

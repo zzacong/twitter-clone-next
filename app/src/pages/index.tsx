@@ -24,13 +24,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-//   const tweets = await getTweets();
-
-//   return {
-//     props: {
-//       tweets,
-//     },
-//   };
-// };
