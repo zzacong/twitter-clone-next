@@ -1,11 +1,11 @@
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
-import { trpc } from '$lib/trpc';
-import TweetBox from '$components/TweetBox';
-import Tweet from '$components/Tweet';
+import { api } from '~/lib/api';
+import TweetBox from '~/components/TweetBox';
+import Tweet from '~/components/Tweet';
 
 export default function Feed() {
-  const { data: tweets } = trpc.tweet.getAll.useQuery();
+  const { data: tweets } = api.tweet.getAll.useQuery();
 
   return (
     <div className="col-span-10 border-x border-x-gray-100 px-6 pt-4 md:col-span-9 lg:col-span-6">
@@ -17,7 +17,7 @@ export default function Feed() {
       <TweetBox />
 
       <div>
-        {tweets?.data?.map(tw => (
+        {tweets?.map(tw => (
           <Tweet key={tw.id} tweet={tw} />
         ))}
       </div>

@@ -1,11 +1,11 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-import { trpc } from '$lib/trpc';
+import { api } from '~/lib/api';
 
 const AuthShowcase: React.FC = () => {
   const { data: session } = useSession();
 
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
+  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
     { enabled: session?.user !== undefined }
   );
@@ -18,7 +18,7 @@ const AuthShowcase: React.FC = () => {
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={session ? () => signOut() : () => signIn()}
+        onClick={session ? () => void signOut() : () => void signIn()}
       >
         {session ? 'Sign out' : 'Sign in'}
       </button>

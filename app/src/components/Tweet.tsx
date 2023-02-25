@@ -1,7 +1,7 @@
-import { type RouterOutputs } from '$lib/trpc';
+import { type RouterOutputs } from '~/lib/api';
 
 type TweetProps = {
-  tweet: NonNullable<RouterOutputs['tweet']['getAll']['data']>[number];
+  tweet: NonNullable<RouterOutputs['tweet']['getAll']>[number];
 };
 
 export default function Tweet({ tweet }: TweetProps) {
