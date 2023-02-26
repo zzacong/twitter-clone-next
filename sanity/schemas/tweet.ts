@@ -27,6 +27,7 @@ export default defineType({
       name: 'profileImage',
       title: 'Profile image',
       type: 'string',
+      initialValue: 'https://api.dicebear.com/5.x/thumbs/png?seed=',
     }),
     defineField({
       name: 'image',

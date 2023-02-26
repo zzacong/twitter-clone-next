@@ -20,6 +20,7 @@ export default defineType({
       name: 'profileImage',
       title: 'Profile image',
       type: 'string',
+      initialValue: 'https://api.dicebear.com/5.x/thumbs/png?seed=',
     }),
     defineField({
       name: 'tweet',
@@ -28,7 +29,7 @@ export default defineType({
       type: 'reference',
       to: {type: 'tweet'},
       validation: (Rule) => Rule.required(),
-    })
+    }),
   ],
   preview: {
     select: {
