@@ -35,6 +35,7 @@ specifiers:
   timeago-react: ^3.0.5
   typescript: ^4.9.5
   zod: ^3.20.6
+  zustand: ^4.3.3
 
 dependencies:
   '@heroicons/react': 2.0.16_react@18.2.0
@@ -54,6 +55,7 @@ dependencies:
   superjson: 1.12.2
   timeago-react: 3.0.5_react@18.2.0
   zod: 3.20.6
+  zustand: 4.3.3_react@18.2.0
 
 devDependencies:
   '@types/eslint': 8.21.1
@@ -2994,4 +2996,20 @@ packages:
 
   /zod/3.20.6:
     resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
+    dev: false
+
+  /zustand/4.3.3_react@18.2.0:
+    resolution: {integrity: sha512-x2jXq8S0kfLGNwGh87nhRfEc2eZy37tSatpSoSIN+O6HIaBhgQHSONV/F9VNrNcBcKQu/E80K1DeHDYQC/zCrQ==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
