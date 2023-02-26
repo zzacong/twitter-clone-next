@@ -8,15 +8,22 @@ import {
   PhotoIcon,
   MagnifyingGlassCircleIcon,
 } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
 
 export default function TweetBox() {
+  const { data: session } = useSession();
   const [input, setInput] = useState('');
 
   return (
     <div className="flex gap-x-4 px-5 pb-5">
       <div className="flex-shrink-0">
         <Image
-          src="https://avatars.dicebear.com/api/adventurer/jnadi13h.svg"
+          src={
+            session?.user.image ??
+            `https://api.dicebear.com/5.x/shapes/png?seed=${
+              session?.user.name ?? 'anonymous'
+            }`
+          }
           alt="Profile picture"
           width={48}
           height={48}

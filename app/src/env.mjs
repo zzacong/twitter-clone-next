@@ -18,8 +18,10 @@ const server = z.object({
     process.env.VERCEL ? z.string().min(1) : z.string().url()
   ),
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-  // DISCORD_CLIENT_ID: z.string(),
-  // DISCORD_CLIENT_SECRET: z.string(),
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+  // TWITTER_CLIENT_ID: z.string().min(1),
+  // TWITTER_CLIENT_SECRET: z.string().min(1),
 
   SANITY_PROJECT_ID: z.string().min(1),
   SANITY_DATASET: z.string().optional(),
@@ -44,6 +46,8 @@ const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
   SANITY_DATASET: process.env.SANITY_DATASET,
   SANITY_TOKEN: process.env.SANITY_TOKEN,
