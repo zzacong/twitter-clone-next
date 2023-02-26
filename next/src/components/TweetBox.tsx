@@ -12,23 +12,32 @@ import {
   PhotoIcon,
   MagnifyingGlassCircleIcon,
 } from '@heroicons/react/24/outline';
+import { api } from '~/lib/api';
 
 const useTweetStore = create<{
   text: string;
   imageUrl?: string;
-  setImage: (v: string) => void;
   setText: (v: string) => void;
+  setImage: (v: string) => void;
+  reset: () => void;
 }>(set => ({
   text: '',
   imageUrl: undefined,
-  setImage: (v: string) => set({ imageUrl: v }),
   setText: (v: string) => set({ text: v }),
+  setImage: (v: string) => set({ imageUrl: v }),
+  reset: () => set({ text: '', imageUrl: undefined }),
 }));
 
 export default function TweetBox() {
   const { data: session } = useSession();
-  const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const apiUtils = api.useContext();
+  const newTweetMutation = api.tweet.create.useMutation({
+    onSuccess() {
+      void apiUtils.tweet.getAll.invalidate();
+      toast('New Tweet created.', { icon: '🚀' });
+    },
+  });
 
   const tweetStore = useTweetStore();
 
@@ -42,6 +51,7 @@ export default function TweetBox() {
           .url({ message: 'Invalid image URL' })
           .parse(form.get('imageUrl'));
         tweetStore.setImage(imageUrl);
+        e.currentTarget.reset();
       } catch (error) {
         console.error(error);
         if (error instanceof z.ZodError)
@@ -50,6 +60,17 @@ export default function TweetBox() {
     },
     [tweetStore]
   );
+
+  const onCreateTweet: React.FormEventHandler<HTMLFormElement> = e => {
+    void (async () => {
+      e.preventDefault();
+      await newTweetMutation.mutateAsync({
+        text: tweetStore.text,
+        image: tweetStore.imageUrl,
+      });
+      tweetStore.reset();
+    })();
+  };
 
   return (
     <div className="flex gap-x-4 px-5 pb-5">
@@ -69,11 +90,15 @@ export default function TweetBox() {
       </div>
 
       <div className="flex-1">
-        <form className="flex-1">
+        <form onSubmit={onCreateTweet} className="flex-1">
+          <label htmlFor="text" className="sr-only">
+            Tweet
+          </label>
           <input
             type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
+            id="text"
+            value={tweetStore.text}
+            onChange={e => tweetStore.setText(e.target.value)}
             placeholder="What's happening?"
             className="mb-2 h-14 w-full py-2 text-xl outline-none placeholder:text-xl placeholder:text-gray-500"
           />
@@ -91,7 +116,9 @@ export default function TweetBox() {
 
             <button
               type="submit"
-              disabled={!input || !session}
+              disabled={
+                !tweetStore.text || !session || newTweetMutation.isLoading
+              }
               className="rounded-full bg-twitter px-5 py-2 font-bold text-white disabled:opacity-50"
             >
               Tweet
@@ -118,6 +145,15 @@ export default function TweetBox() {
               Add image
             </button>
           </form>
+        )}
+
+        {tweetStore.imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={tweetStore.imageUrl}
+            alt="Tweet image"
+            className="mt-6 h-44 w-full rounded-xl object-contain shadow-lg"
+          />
         )}
       </div>
     </div>

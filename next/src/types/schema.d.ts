@@ -1,18 +1,15 @@
+import type { SanityDocument } from '@sanity/client';
+
 declare global {
   interface TweetBodyT {
     text: string;
     username: string;
     profileImage?: string;
     image?: string;
+    blockTweet: boolean;
   }
 
-  interface TweetT extends TweetBodyT {
-    _createdAt: string;
-    _id: string;
-    _rev: string;
-    _type: string;
-    _updatedAt: string;
-  }
+  type TweetT = SanityDocument<TweetBodyT>;
 
   interface CommentBodyT {
     comment: string;
@@ -21,17 +18,10 @@ declare global {
     profileImage: string;
   }
 
-  interface CommentT extends CommentBodyT {
-    _createdAt: string;
-    _id: string;
-    _rev: string;
-    _type: string;
-    _updatedAt: string;
+  interface CommentT extends SanityDocument<CommentBodyT> {
     tweet: {
       _ref: string;
       _type: 'reference';
     };
   }
 }
-
-export {};

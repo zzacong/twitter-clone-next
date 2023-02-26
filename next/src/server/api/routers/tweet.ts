@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
+import {
+  createTRPCRouter,
+  publicProcedure,
+  protectedProcedure,
+} from '~/server/api/trpc';
 
 export const tweetRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -26,5 +30,24 @@ export const tweetRouter = createTRPCRouter({
         { tweetId: input.tweetId }
       );
       return comments;
+    }),
+
+  create: protectedProcedure
+    .input(
+      z.object({
+        text: z.string(),
+        image: z.string().optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const newTweet = await ctx.sanity.create<TweetBodyT>({
+        _type: 'tweet',
+        text: input.text,
+        image: input.image,
+        username: ctx.session.user.username,
+        profileImage: ctx.session.user.image ?? undefined,
+        blockTweet: false,
+      });
+      return newTweet;
     }),
 });
