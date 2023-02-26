@@ -1,5 +1,9 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
+import { create } from 'zustand';
+import { z } from 'zod';
 
 import {
   CalendarIcon,
@@ -8,8 +12,6 @@ import {
   PhotoIcon,
   MagnifyingGlassCircleIcon,
 } from '@heroicons/react/24/outline';
-import { useSession } from 'next-auth/react';
-import { create } from 'zustand';
 
 const useTweetStore = create<{
   text: string;
@@ -30,14 +32,24 @@ export default function TweetBox() {
 
   const tweetStore = useTweetStore();
 
-  const onAddImage: React.FormEventHandler<HTMLFormElement> = e => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const imageUrl = form.get('imageUrl');
-    if (typeof imageUrl === 'string' && imageUrl) {
-      tweetStore.setImage(imageUrl);
-    }
-  };
+  const onAddImage: React.FormEventHandler<HTMLFormElement> = useCallback(
+    e => {
+      e.preventDefault();
+      const form = new FormData(e.currentTarget);
+      try {
+        const imageUrl = z
+          .string()
+          .url({ message: 'Invalid image URL' })
+          .parse(form.get('imageUrl'));
+        tweetStore.setImage(imageUrl);
+      } catch (error) {
+        console.error(error);
+        if (error instanceof z.ZodError)
+          toast.error(error.issues.at(0)?.message ?? 'Invalid url');
+      }
+    },
+    [tweetStore]
+  );
 
   return (
     <div className="flex gap-x-4 px-5 pb-5">
