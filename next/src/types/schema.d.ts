@@ -13,9 +13,12 @@ declare global {
 
   interface CommentBodyT {
     comment: string;
-    tweetId: string;
     username: string;
-    profileImage: string;
+    profileImage?: string;
+    tweet: {
+      _ref: string;
+      _type: 'reference';
+    };
   }
 
   interface CommentT extends SanityDocument<CommentBodyT> {

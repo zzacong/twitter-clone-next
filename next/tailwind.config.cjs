@@ -8,5 +8,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  plugins: [require('tailwind-scrollbar-hide')],
 };

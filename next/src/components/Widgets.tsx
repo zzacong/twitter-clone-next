@@ -18,6 +18,7 @@ export default function Widgets() {
         sourceType="profile"
         screenName="vercel"
         autoHeight
+        noScrollbar
       />
     </div>
   );

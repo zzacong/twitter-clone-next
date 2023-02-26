@@ -9,7 +9,7 @@ export default function Feed() {
   const { data: tweets, refetch } = api.tweet.getAll.useQuery();
 
   return (
-    <div className="col-span-10 max-h-screen overflow-auto border-x border-x-gray-200 pt-5 md:col-span-9 lg:col-span-6">
+    <div className="col-span-10 max-h-screen overflow-auto border-x border-x-gray-200 pt-5 scrollbar-hide md:col-span-9 lg:col-span-6">
       <div className="flex items-center justify-between px-5">
         <h1 className="text-xl font-bold">Home</h1>
         <button
@@ -25,7 +25,7 @@ export default function Feed() {
 
       <TweetBox />
 
-      <div>
+      <div className="pb-10">
         {tweets?.map(tw => (
           <Tweet key={tw._id} tweet={tw} />
         ))}

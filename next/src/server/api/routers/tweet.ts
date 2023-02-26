@@ -15,23 +15,6 @@ export const tweetRouter = createTRPCRouter({
     return tweets;
   }),
 
-  getComment: publicProcedure
-    .input(z.object({ tweetId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const comments = await ctx.sanity.fetch<CommentT[]>(
-        `//groq
-      *[
-        _type == "comment" &&
-        tweet._ref == $tweetId
-      ] {
-        ...,
-      } | order(_createdAt desc)
-    `,
-        { tweetId: input.tweetId }
-      );
-      return comments;
-    }),
-
   create: protectedProcedure
     .input(
       z.object({
